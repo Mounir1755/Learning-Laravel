@@ -1,3 +1,6 @@
 <x-layout>
-    <h1>gay about</h1>
+    <x-slot:heading>
+        Home Page
+    <x-slot:heading>
+    <h1>about</h1>
 </x-layout>
