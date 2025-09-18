@@ -2,55 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Models\Job;
+
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
 Route::get('/jobs', function () {
-    return view('jobs', 
-    [
-        'jobs' => [ 
-            [   
-                'id' => 1,
-                'title' => 'director',
-                'salary' => '$50,000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'progammer',
-                'salary' => '$10,000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'teacher',
-                'salary' => '$40,000'
-            ]
-        ]
+    return view('jobs', [
+        'jobs' => Job::all()
     ]);
 });
 
 Route::get('/jobs/{id}', function ($id) {
-        $jobs = [ 
-            [   
-                'id' => 1,
-                'title' => 'director',
-                'salary' => '$50,000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'progammer',
-                'salary' => '$10,000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'teacher',
-                'salary' => '$40,000'
-            ]
-        ];
-
-    $job = \Illuminate\Support\Arr::first($jobs, fn($job) => $job['id'] == $id);
-
+    $job = Job::find($id);
     return view('job', ['job' => $job]);
 });
 
